@@ -12,7 +12,7 @@ header {
     padding-top: 40px;
 }
 
-footer{
+footer {
     height: 340px;
     background-color: transparent;
     background-image: linear-gradient(180deg, #182E4F 0%, #64B880 100%);
@@ -84,10 +84,10 @@ nav ul li a {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
-   
+
 }
 
-#form-simulador .titulo-form{
+#form-simulador .titulo-form {
     font-size: 35px;
     font-weight: 900;
     line-height: 30px;
@@ -95,12 +95,12 @@ nav ul li a {
     word-spacing: 1px;
 }
 
-.btn-form-simulador{
+.btn-form-simulador {
     margin-right: 10px;
     width: 108px;
 }
 
-.panel-value{
+.panel-value {
     width: 100%;
     background-color: #f4f4f4;
     -webkit-border-radius: 10px;
@@ -109,7 +109,7 @@ nav ul li a {
     padding: 20px;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: #182E4F !important;
     border: none;
     -webkit-border-radius: 30px;
@@ -119,74 +119,119 @@ nav ul li a {
     padding: 10px;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
     background-color: #1e3b67 !important;
     border: none;
 }
 
 
+.label-valor {
+    font-size: 20px;
+    color: #198754;
+}
 
+.label-total-financiamento {
+    font-size: 16px;
+    color: #ffffff;
+    width: 100%;
+    background-color: #ff5d53;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    padding: 5px;
 
+}
+
+.label-money{
+    margin: auto;
+    font-size: 20px;
+}
+
+.input-valor {
+    font-family: inherit;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: 0;
+    font-size: 2.5rem;
+    color: #000000;
+    /* $white */
+    padding: 7px 0;
+    background: transparent;
+    box-shadow: none !important;
+}
+
+.input-valor:hover,:focus {
+    background: transparent !important;
+    /* border: none !important; */
+    outline: 0 !important;
+    box-shadow: none !important;
+}
 
 /* Cores */
 .form__group {
     position: relative;
     padding: 15px;
     margin-top: 10px;
-    
-  }
-  
-  .form__field {
+
+}
+
+.form__field {
     font-family: inherit;
     width: 100%;
     border: 0;
-    border-bottom: 2px solid #9b9b9b; /* $gray */
+    border-bottom: 2px solid #9b9b9b;
+    /* $gray */
     outline: 0;
     font-size: 1.3rem;
-    color: #fff; /* $white */
+    color: #9b9b9b;
+    /* $white */
     padding: 7px 0;
     background: transparent;
     transition: border-color 0.2s;
-  }
-  
-  .form__field::placeholder {
+}
+
+.form__field::placeholder {
     color: transparent;
-  }
-  
-  .form__field:placeholder-shown + .form__label {
+}
+
+.form__field:placeholder-shown+.form__label {
     font-size: 1.0rem;
     cursor: text;
     top: 20px;
-  }
-  
-  .form__label {
+}
+
+.form__label {
     position: absolute;
     top: 0;
     display: block;
     transition: 0.2s;
     font-size: 1rem;
-    color: #9b9b9b; /* $gray */
-  }
-  
-  .form__field:focus + .form__label {
+    color: #9b9b9b;
+    /* $gray */
+}
+
+.form__field:focus+.form__label {
     position: absolute;
     top: 0;
     display: block;
     transition: 0.2s;
     font-size: 1rem;
-    color: #11998e; /* $primary */
-    font-weight: 700;    
-  }
-  
-  .form__field:focus {
-    padding-bottom: 6px;  
+    color: #11998e;
+    /* $primary */
+    font-weight: 700;
+}
+
+.form__field:focus {
+    padding-bottom: 6px;
     font-weight: 700;
     border-width: 3px;
-    border-image: linear-gradient(to right, #11998e, #38ef7d); /* $primary, $secondary */
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    /* $primary, $secondary */
     border-image-slice: 1;
-  }
-  
-  .form__field:required, .form__field:invalid {
+}
+
+.form__field:required,
+.form__field:invalid {
     box-shadow: none;
-  }
-  
+}
