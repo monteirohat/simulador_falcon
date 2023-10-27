@@ -62,7 +62,7 @@
                     <div class="col-12">
                         <p class="text-center">
                             <span class="titulo-form" style="color: #182e4f;">SIMULADOR DE&nbsp;</span>
-                            <span class="titulo-form" style="color: #64b880;">FINCANCIAMENTO&nbsp;
+                            <span class="titulo-form" style="color: #64b880;">FINANCIAMENTO&nbsp;
                             </span>
                         </p>
                     </div>
@@ -72,17 +72,17 @@
                     <div class="row pb-4">
                         <div class="col-md-12 text-center">
                             <input type="radio" class="btn-check" name="options-tipo-imovel"
-                                id="tipo-imovel-residencial" autocomplete="off" checked>
+                                id="tipo-imovel-residencial" autocomplete="off" checked value="Residencial">
                             <label style="margin-right: 10px;" class="btn btn-outline-success btn-form-simulador"
                                 for="tipo-imovel-residencial">Residencial</label>
 
                             <input type="radio" class="btn-check" name="options-tipo-imovel" id="tipo-imovel-comercial"
-                                autocomplete="off">
+                                autocomplete="off" value="Comercial">
                             <label style="margin-right: 10px;" class="btn btn-outline-success btn-form-simulador"
                                 for="tipo-imovel-comercial">Comercial</label>
 
                             <input type="radio" class="btn-check" name="options-tipo-imovel" id="tipo-imovel-terreno"
-                                autocomplete="off">
+                                autocomplete="off" value="Terreno">
                             <label class="btn btn-outline-success btn-form-simulador"
                                 for="tipo-imovel-terreno">Terreno</label>
                         </div>
@@ -213,19 +213,20 @@
                                 <img class="logo-banco"  src="{{ url_for('static', filename='img/logo_bradesco.png') }}">
                             </th>
                             <td>SAC</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td>9,17 %</td>
+                            <td>R$ 959,67	</td>
                         </tr>
                         <tr>
                             <th><img class="logo-banco"  src="{{ url_for('static', filename='img/logo_itau.png') }}"></th>
                             <td>SAC</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                            <td>9,69 %</td>
+                            <td>R$ 959,67	</td>
                         </tr>
                         <tr>
                             <th><img class="logo-banco" src="{{ url_for('static', filename='img/logo_santander.png') }}"></th>
                             <td>SAC</td>
-                            <td>@twitter</td>
+                            <td>9,89 %</td>
+                            <td>R$ 959,67	</td>
                         </tr>
                     </tbody>
 

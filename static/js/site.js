@@ -141,6 +141,10 @@ function simular() {
     const inputCelular = document.getElementById('form-celular');
     const inputIdade = document.getElementById('form-idade');
     const selectEstado = document.getElementById('form-estado');
+    const tipoImovelSelecionado = $('input[name="options-tipo-imovel"]:checked').attr('value');
+
+    const valorImovel = converterStringParaNumero(inputValorImovel.value);
+    const valorEntrada = converterStringParaNumero(inputValorEntrada.value);
 
     const cpfLimpo = removerCaracteresEspeciais(inputCpf.value);
     const celularLimpo = removerCaracteresEspeciais(inputCelular.value);
@@ -169,8 +173,8 @@ function simular() {
         return;
     }
 
-     //Idade
-     if (inputIdade.value.trim() === "") {
+    //Idade
+    if (inputIdade.value.trim() === "") {
         inputIdade.focus();
         return;
     }
@@ -192,6 +196,50 @@ function simular() {
 
     //Mostra o preloader
     document.querySelector(".preloader").style.display = "flex";
+
+    $.ajax({
+        url: '/simular',
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify({
+            Nome: inputNome.value.trim(),
+            Email: inputEmail.value.trim(),
+            Cpf: cpfLimpo,
+            Celular: celularLimpo,
+            LocalizacaoImovel: selectEstado.value,
+            TipoImovel: tipoImovelSelecionado,
+            ValorImovel: valorImovel,
+            ValorEntrada: valorEntrada,
+            PrazoMeses: 60
+            
+        }),
+        success: function (response) {
+            // Esconda o preloader
+            document.querySelector(".preloader").style.display = "none";
+
+            console.log(response);
+            if (response.Sucesso == False){
+                alert('Ocorreu um erro a realizar o cálculo.');
+            }
+
+
+            // Mostra os dados cadastrais novamente, se desejar
+            //$('#dados-cadastrais').show();
+        },
+        error: function (error) {
+            // Esconda o preloader
+            document.querySelector(".preloader").style.display = "none";
+
+            console.error("Erro ao realizar simulação:", error);
+            alert('Ops! Algo deu errado ao tentar realizar a simulação. Tente novamente.');
+
+            // Mostra os dados cadastrais novamente
+            $('#dados-cadastrais').show();
+        }
+    });
+
+
 
     //Oculta os dados cadastrais
     $('#dados-cadastrais').hide();
