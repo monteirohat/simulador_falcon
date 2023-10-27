@@ -14,12 +14,15 @@ const labelValorFinanciar = document.getElementById('form-label-valor-financiar'
 //Total a financiar
 const labelTotalFinanciar = document.getElementById('form-label-total-financiar');
 
+//Idade
+const idadeInput = document.getElementById('form-idade');
+
 function converterStringParaNumero(valorString) {
     let valorFormatado = valorString.replace(/\./g, '').replace(',', '.');
     return parseFloat(valorFormatado);
 }
 
-
+//RANGE DE PERCENTUAL
 inputRange.addEventListener('input', function () {
     if (inputValorImovel.value) {
         let valorNumerico = converterStringParaNumero(inputValorImovel.value);
@@ -67,6 +70,15 @@ inputValorEntrada.addEventListener('blur', function() {
     
 });
 
+//IDADE
+idadeInput.addEventListener('blur', function() {
+    let valor = parseInt(idadeInput.value, 10);
+    
+    if (valor < 18 || valor > 80) {
+        alert('Por favor, insira uma idade entre 18 e 80 anos.');
+        idadeInput.value = ''; // Limpa o valor se estiver fora do intervalo
+    }
+});
 
 
 function calcular_range() {

@@ -64,52 +64,56 @@
                     </div>
                 </div>
 
-                <div class="row pb-4">
-                    <div class="col-md-12 text-center">
-                        <input type="radio" class="btn-check" name="options-tipo-imovel" id="tipo-imovel-residencial"
-                            autocomplete="off" checked>
-                        <label style="margin-right: 10px;" class="btn btn-outline-success btn-form-simulador"
-                            for="tipo-imovel-residencial">Residencial</label>
+                <div id="dados-cadastrais">
+                    <div class="row pb-4">
+                        <div class="col-md-12 text-center">
+                            <input type="radio" class="btn-check" name="options-tipo-imovel"
+                                id="tipo-imovel-residencial" autocomplete="off" checked>
+                            <label style="margin-right: 10px;" class="btn btn-outline-success btn-form-simulador"
+                                for="tipo-imovel-residencial">Residencial</label>
 
-                        <input type="radio" class="btn-check" name="options-tipo-imovel" id="tipo-imovel-comercial"
-                            autocomplete="off">
-                        <label style="margin-right: 10px;" class="btn btn-outline-success btn-form-simulador"
-                            for="tipo-imovel-comercial">Comercial</label>
+                            <input type="radio" class="btn-check" name="options-tipo-imovel" id="tipo-imovel-comercial"
+                                autocomplete="off">
+                            <label style="margin-right: 10px;" class="btn btn-outline-success btn-form-simulador"
+                                for="tipo-imovel-comercial">Comercial</label>
 
-                        <input type="radio" class="btn-check" name="options-tipo-imovel" id="tipo-imovel-terreno"
-                            autocomplete="off">
-                        <label class="btn btn-outline-success btn-form-simulador"
-                            for="tipo-imovel-terreno">Terreno</label>
+                            <input type="radio" class="btn-check" name="options-tipo-imovel" id="tipo-imovel-terreno"
+                                autocomplete="off">
+                            <label class="btn btn-outline-success btn-form-simulador"
+                                for="tipo-imovel-terreno">Terreno</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row pt-4">
-                    <div class="col-md-6 form__group field">
-                        <input type="input" class="form__field" placeholder="Nome" name="form-nome" id='form-nome'
-                            required />
-                        <label for="form-nome" class="form__label">Nome</label>
+                    <div class="row pt-4">
+                        <div class="col-md-6 form__group field">
+                            <input type="input" class="form__field" placeholder="Nome" name="form-nome" id='form-nome'
+                                required />
+                            <label for="form-nome" class="form__label">Nome</label>
+                        </div>
+                        <div class="col-md-6 form__group field">
+                            <input type="email" class="form__field" placeholder="Email" name="form-email"
+                                id='form-email' required />
+                            <label for="form-email" class="form__label">Email</label>
+                        </div>
                     </div>
-                    <div class="col-md-6 form__group field">
-                        <input type="email" class="form__field" placeholder="Email" name="form-email" id='form-email'
-                            required />
-                        <label for="form-email" class="form__label">Email</label>
-                    </div>
-                </div>
-                <div class="row pt-4 pb-4">
-                    <div class="col-md-3 form__group field">
-                        <input type="input" class="form__field cpf" placeholder="Cpf" name="form-cpf" id='form-cpf'
-                            required />
-                        <label for="form-cpf" class="form__label">CPF</label>
-                    </div>
-                    <div class="col-md-3 form__group field">
-                        <input type="input" class="form__field phone_with_ddd" placeholder="celular" name="form-celular"
-                            id='form-celular' required />
-                        <label for="form-celular" class="form__label">Celular</label>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="form-estado" class="form-label">Selecione um estado:</label>
-                            <select class="form-select" id="form-estado" name="estado">
-                                <option selected>Escolha...</option>
+                    <div class="row pt-4 pb-4">
+                        <div class="col-md-3 form__group field">
+                            <input type="input" class="form__field cpf" placeholder="Cpf" name="form-cpf" id='form-cpf'
+                                required />
+                            <label for="form-cpf" class="form__label">CPF</label>
+                        </div>
+                        <div class="col-md-3 form__group field">
+                            <input type="input" class="form__field phone_with_ddd" placeholder="celular"
+                                name="form-celular" id='form-celular' required />
+                            <label for="form-celular" class="form__label">Celular</label>
+                        </div>
+                        <div class="col-md-3 form__group field">
+                            <input type="number" min="18" max="80" class="form__field" placeholder="idade"
+                                name="form-idade" id='form-idade' required />
+                            <label for="form-idade" class="form__label">Idade</label>
+                        </div>
+                        <div class="col-md-3 form__group field">
+                            <select class="form__select" id="form-estado" name="estado">
+                                <option selected>Escolha o estado...</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
                                 <option value="AP">Amapá</option>
@@ -140,9 +144,8 @@
                             </select>
                         </div>
                     </div>
+
                 </div>
-
-
                 <div class="panel-value">
                     <div class="row pt-4">
                         <div class="col-md-4">
@@ -175,7 +178,7 @@
                             </div>
                             <div class="text-center">
                                 <label id="form-label-total-financiar"
-                                class="form-label label-total-financiamento">FINANCIAR: R$ 0,00</label>
+                                    class="form-label label-total-financiamento">FINANCIAR: R$ 0,00</label>
                             </div>
 
                         </div>
@@ -189,6 +192,39 @@
                     </div>
                 </div>
             </form>
+            <div id="resultado">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
         </div>
     </section>
 

@@ -95,6 +95,10 @@ nav ul li a {
     word-spacing: 1px;
 }
 
+#resultado{
+    padding-top: 40px;
+}
+
 .btn-form-simulador {
     margin-right: 10px;
     width: 108px;
@@ -147,6 +151,9 @@ nav ul li a {
     font-size: 20px;
 }
 
+
+/* Input's */
+
 .input-valor {
     font-family: inherit;
     width: 100%;
@@ -168,6 +175,23 @@ nav ul li a {
     box-shadow: none !important;
 }
 
+
+/* Dropdown */
+.form__select{
+    font-family: inherit;
+    width: 100%;
+    border: none;
+    outline: 0;
+    color: #182e50;
+    background: transparent;
+    box-shadow: none !important;
+    padding-top: 9px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #9b9b9b;
+    font-size: 1.3rem;
+}
+
+
 /* Cores */
 .form__group {
     position: relative;
@@ -184,7 +208,7 @@ nav ul li a {
     /* $gray */
     outline: 0;
     font-size: 1.3rem;
-    color: #9b9b9b;
+    color: #182e50;
     /* $white */
     padding: 7px 0;
     background: transparent;
