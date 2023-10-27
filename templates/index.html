@@ -54,6 +54,10 @@
     <section>
         <div class="container">
             <form id="form-simulador">
+                <div class="preloader">
+                    <div class="spinner"></div>
+                </div>
+                
                 <div class="row pb-4">
                     <div class="col-12">
                         <p class="text-center">
@@ -186,7 +190,7 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col-12 text-center">
-                        <button class="btn btn-primary" type="submit">
+                        <button class="btn btn-primary" type="submit" onclick="simular(event)">
                             <i class="bi bi-currency-exchange"></i> VER PARCELAS
                         </button>
                     </div>
@@ -197,27 +201,30 @@
                     <thead>
                         <tr>
                             <th scope="col"></th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Tabela</th>
+                            <th scope="col">Juros ao ano</th>
+                            <th scope="col">1ª parcela</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
+                            <th>
+                                <img class="logo-banco"  src="{{ url_for('static', filename='img/logo_bradesco.png') }}">
+                            </th>
+                            <td>SAC</td>
                             <td>Otto</td>
                             <td>@mdo</td>
                         </tr>
                         <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
+                            <th><img class="logo-banco"  src="{{ url_for('static', filename='img/logo_itau.png') }}"></th>
+                            <td>SAC</td>
                             <td>Thornton</td>
                             <td>@fat</td>
                         </tr>
                         <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
+                            <th><img class="logo-banco" src="{{ url_for('static', filename='img/logo_santander.png') }}"></th>
+                            <td>SAC</td>
                             <td>@twitter</td>
                         </tr>
                     </tbody>
