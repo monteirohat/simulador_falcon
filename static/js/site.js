@@ -194,6 +194,25 @@ function simular() {
         return;
     }
 
+    //Valida o celular
+    if (!validaCelular(celularLimpo)) {
+        inputCelular.focus();
+        alert('O celular está no formato incorreto, o número deve começar com 9 e conter 9 dígitos sem contar o DDD.');
+        console.log("Número de celular é inválido.");
+        return;
+    } 
+
+    //Valida se o campo valor foi preenchido
+    if(valorImovel <= 0){
+        inputValorImovel.focus();
+        console.log("Valor do imóvel não informado.");
+        alert('Ops! Informe o valor do imóvel.');
+        return;
+    }
+
+
+    const datanascimento = generateDataNascimento(inputIdade.value.trim());
+
     //Mostra o preloader
     document.querySelector(".preloader").style.display = "flex";
 
@@ -208,10 +227,14 @@ function simular() {
             Cpf: cpfLimpo,
             Celular: celularLimpo,
             LocalizacaoImovel: selectEstado.value,
+            EscolheuImovel:true,
+            FinanciarDespesas:false,
+            OutroParticipante:false,
             TipoImovel: tipoImovelSelecionado,
             ValorImovel: valorImovel,
             ValorEntrada: valorEntrada,
-            PrazoMeses: 60
+            PrazoMeses: 96,
+            Nascimento: datanascimento
             
         }),
         success: function (response) {
@@ -219,8 +242,31 @@ function simular() {
             document.querySelector(".preloader").style.display = "none";
 
             console.log(response);
-            if (response.Sucesso == False){
-                alert('Ocorreu um erro a realizar o cálculo.');
+            if (response.Sucesso == false){
+                alert('Ocorreu um erro a realizar o cálculo.' + response.Erro);
+            }
+            else{
+                var tbody = $("table tbody");
+                tbody.empty(); // Limpa as linhas existentes
+        
+                $.each(response.Simulacao.Calculos, function(i, item) {
+                    var imagemSrc = '';
+                    if (item.Instituicao === "Bradesco") {
+                        imagemSrc = "static/img/logo_bradesco.png";
+                    } else if (item.Instituicao === "Itaú") {
+                        imagemSrc = "static/img/logo_itau.png";
+                    } else if (item.Instituicao === "Santander") {
+                        imagemSrc = "static/img/logo_santander.png";
+                    }
+    
+                    var tr = $("<tr></tr>");
+                    tr.append('<th><img class="logo-banco" src="' + imagemSrc + '"></th>');
+                    tr.append('<td>' + item.TipoOperacao + '</td>');
+                    tr.append('<td>' + item.TaxaJuros + '%</td>');
+                    tr.append('<td>R$ ' + item.PrimeiraParcela.toFixed(2) + '</td>');
+    
+                    tbody.append(tr);
+                });
             }
 
 
@@ -231,7 +277,7 @@ function simular() {
             // Esconda o preloader
             document.querySelector(".preloader").style.display = "none";
 
-            console.error("Erro ao realizar simulação:", error);
+            console.error("Erro ao realizar simulação:", error.responseText.toString());
             alert('Ops! Algo deu errado ao tentar realizar a simulação. Tente novamente.');
 
             // Mostra os dados cadastrais novamente
@@ -242,7 +288,7 @@ function simular() {
 
 
     //Oculta os dados cadastrais
-    $('#dados-cadastrais').hide();
+    //$('#dados-cadastrais').hide();
 
 }
 
@@ -280,3 +326,31 @@ function validaCPF(cpf) {
     }
     return true;
 }
+
+function validaCelular(celular) {
+    // A regex abaixo verifica se o número começa com 2 dígitos de DDD seguidos por um 9 e então 8 dígitos.
+    var pattern = /^[0-9]{2}9[0-9]{8}$/;
+    return pattern.test(celular);
+  }
+  
+
+function generateDataNascimento(idade) {
+    // Obter a data atual
+    let dataAtual = new Date();
+  
+    // Obter o ano, mês e dia atuais
+    let anoAtual = dataAtual.getFullYear();
+    let mesAtual = dataAtual.getMonth(); 
+    let diaAtual = dataAtual.getDate();
+  
+    // Calcular o ano de nascimento subtraindo a idade do ano atual
+    let anoNascimento = anoAtual - idade;
+  
+    // Formatar o mês e o dia para garantir que estejam no formato de dois dígitos
+    let mesFormatado = (mesAtual + 1).toString().padStart(2, '0'); // Adiciona 1 porque getMonth() retorna de 0 a 11
+    let diaFormatado = diaAtual.toString().padStart(2, '0');
+  
+    // Montar a data de nascimento no formato 'aaaa-mm-dd'
+    return `${anoNascimento}-${mesFormatado}-${diaFormatado}`;
+  }
+  

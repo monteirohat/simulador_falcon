@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "80e2b50c-c0aa-41c2-8ba3-4a82c5765250",
+		"name": "Falcon Financiamentos Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29434834"
+	},
+	"item": [
+		{
+			"name": "FIN | Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "falcon_financiamentos",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "F@lc0NF1n@nc1@m3nt0s",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://usvlbrk01rn001.azurewebsites.net/connect/token",
+					"protocol": "https",
+					"host": [
+						"usvlbrk01rn001",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FIN | Cálculo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Nome\": \"ANAKIN SKYWALKER\",\r\n  \"CPF\": \"11948562685\", /* Sem pontos ou traço */\r\n  \"Email\": \"anakin@teste.com\",\r\n  \"Celular\": \"11999999999\",\r\n  \"LocalizacaoImovel\": \"SP\", /* Estado com dois dígitos */\r\n  \"EscolheuImovel\": true,\r\n  \"FinanciarDespesas\": false,\r\n  \"OutroParticipante\": false,\r\n  \"NomeParticipante\": \"string\", /* Somente se OutroParticipante = true */\r\n  \"CPFParticipante\": \"string\", /* Somente se OutroParticipante = true */\r\n  \"NascimentoParticipante\": \"0\", /* Somente se OutroParticipante = true | Padrão yyyy-mm-dd */\r\n  \"RendaMensalParticipante\": 0, /* Somente se OutroParticipante = true */\r\n  \"TipoImovel\": \"Residencial\", /* Residencial, Comercial ou Poupança */\r\n  \"ValorImovel\": 100000,\r\n  \"ValorEntrada\": 30000, /* mínimo de 30% do valor do imóvel. */\r\n  \"PrazoMeses\": 420, /* Não pode ser menos de 96 nem maior que 420. */\r\n  \"Nascimento\": \"1979-05-23\", /* Idade (>= 18) + PrazoMeses não pode ser maior que 80 anos e 6 meses. */\r\n  \"RendaMensal\": 100000,\r\n  \"SistemaAmortizador\": 1, /* 1 - SAC | 2 - Price */\r\n  \"Seguradora\": \"ITAU\",  /* Deixar padrão */\r\n  \"SeguradoraSantander\": \"ZURICH SANTANDER\" /* Deixar padrão */\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://prd-api-simulador.credimorar.me/api/simulacao/calculo",
+					"protocol": "https",
+					"host": [
+						"prd-api-simulador",
+						"credimorar",
+						"me"
+					],
+					"path": [
+						"api",
+						"simulacao",
+						"calculo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FIN | Simulação",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Nome\": \"ANAKIN SKYWALKER\",\r\n  \"CPF\": \"11948562685\", /* Sem pontos ou traço */\r\n  \"Email\": \"anakin@teste.com\",\r\n  \"Celular\": \"11999999999\",\r\n  \"LocalizacaoImovel\": \"SP\", /* Estado com dois dígitos */\r\n  \"EscolheuImovel\": true,\r\n  \"FinanciarDespesas\": false,\r\n  \"OutroParticipante\": false,\r\n  \"NomeParticipante\": \"string\", /* Somente se OutroParticipante = true */\r\n  \"CPFParticipante\": \"string\", /* Somente se OutroParticipante = true */\r\n  \"NascimentoParticipante\": \"0\", /* Somente se OutroParticipante = true */\r\n  \"RendaMensalParticipante\": 0, /* Somente se OutroParticipante = true */\r\n  \"TipoImovel\": \"Residencial\", /* Residencial, Comercial ou Poupança */\r\n  \"ValorImovel\": 100000,\r\n  \"ValorEntrada\": 30000, /* mínimo de 30% do valor do imóvel. */\r\n  \"PrazoMeses\": 420, /* Não pode ser menos de 96 nem maior que 420. */\r\n  \"Nascimento\": \"1979-05-23\", /* Idade (>= 18) + PrazoMeses não pode ser maior que 80 anos e 6 meses. */\r\n  \"RendaMensal\": 100000,\r\n  \"SistemaAmortizador\": 1, /* 1 - SAC | 2 - Price */\r\n  \"Seguradora\": \"ITAU\",  /* Deixar padrão */\r\n  \"SeguradoraSantander\": \"ZURICH SANTANDER\" /* Deixar padrão */\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://prd-api-simulador.credimorar.me/api/simulacao",
+					"protocol": "https",
+					"host": [
+						"prd-api-simulador",
+						"credimorar",
+						"me"
+					],
+					"path": [
+						"api",
+						"simulacao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FIN | Simulação Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Nome\": \"ANAKIN SKYWALKER\",\r\n  \"CPF\": \"11948562685\", /* Sem pontos ou traço */\r\n  \"Email\": \"anakin@teste.com\",\r\n  \"Celular\": \"11999999999\",\r\n  \"LocalizacaoImovel\": \"SP\", /* Estado com dois dígitos */\r\n  \"EscolheuImovel\": true,\r\n  \"FinanciarDespesas\": false,\r\n  \"OutroParticipante\": false,\r\n  \"NomeParticipante\": \"string\", /* Somente se OutroParticipante = true */\r\n  \"CPFParticipante\": \"string\", /* Somente se OutroParticipante = true */\r\n  \"NascimentoParticipante\": \"0\", /* Somente se OutroParticipante = true */\r\n  \"RendaMensalParticipante\": 0, /* Somente se OutroParticipante = true */\r\n  \"TipoImovel\": \"Residencial\", /* Residencial, Comercial ou Poupança */\r\n  \"ValorImovel\": 100000,\r\n  \"ValorEntrada\": 30000, /* mínimo de 30% do valor do imóvel. */\r\n  \"PrazoMeses\": 420, /* Não pode ser menos de 96 nem maior que 420. */\r\n  \"Nascimento\": \"1979-05-23\", /* Idade (>= 18) + PrazoMeses não pode ser maior que 80 anos e 6 meses. */\r\n  \"RendaMensal\": 100000,\r\n  \"SistemaAmortizador\": 1, /* 1 - SAC | 2 - Price */\r\n  \"Seguradora\": \"ITAU\",  /* Deixar padrão */\r\n  \"SeguradoraSantander\": \"ZURICH SANTANDER\" /* Deixar padrão */\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://prd-api-simulador.credimorar.me/api/simulacao",
+					"protocol": "https",
+					"host": [
+						"prd-api-simulador",
+						"credimorar",
+						"me"
+					],
+					"path": [
+						"api",
+						"simulacao"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

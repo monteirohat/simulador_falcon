@@ -44,9 +44,11 @@ def simular():
     valor_imovel = data.get("ValorImovel")
     valor_entrada = data.get("ValorEntrada")
     prazo = data.get("PrazoMeses")
+    nascimento = data.get("Nascimento")
+
 
     # Validação dos campos
-    if not all([nome, cpf, email, celular, estado, tipo_imovel, valor_imovel, valor_entrada, prazo]):
+    if not all([nome, cpf, email, celular, estado, tipo_imovel, valor_imovel, prazo]):
         return jsonify({"error": "Todos os campos são obrigatórios."}), 400
 
 
@@ -78,15 +80,11 @@ def simular():
         "EscolheuImovel": True,  # Padrão
         "FinanciarDespesas": False,  # Padrão
         "OutroParticipante": False,  # Padrão
-        "NomeParticipante": "string", # Somente se OutroParticipante = true */
-        "CPFParticipante": "string", # Somente se OutroParticipante = true */
-        "NascimentoParticipante": "0", # Somente se OutroParticipante = true */
-        "RendaMensalParticipante": 0, # Somente se OutroParticipante = true */
         "TipoImovel": tipo_imovel,
         "ValorImovel": valor_imovel,
         "ValorEntrada": valor_entrada,
         "PrazoMeses": prazo,
-        "Nascimento": "1979-05-23",  # Padrão para este exemplo
+        "Nascimento": nascimento,  # Padrão para este exemplo
         "RendaMensal": 100000,  # Padrão para este exemplo
         "SistemaAmortizador": 1,  # Padrão
         "Seguradora": "ITAU",  # Padrão
